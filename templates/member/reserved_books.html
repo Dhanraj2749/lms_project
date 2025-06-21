@@ -1,0 +1,52 @@
+{% set title = "Reserved Books" %}
+{% set curPage = "reservedBooks" %}
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+  <h5 class="page_title text-center border-bottom border-primary pb-2">{{title}}</h5>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-striped p-2" id="table">
+          <thead>
+  <tr> 
+    <th>SNo</th>
+    <th>Book&nbsp;name</th>
+    <th>Reserved&nbsp;On</th>
+    <th>Action</th>
+  </tr>
+</thead>
+<tbody>
+  {% for item in reserved_books %}
+  <tr>
+    <td>{{ loop.index }}</td>
+    <td>{{ item["book"]["name"] }}</td>
+    <td>{{ item["reserved_on"] }}</td>
+    <td class="text-center">
+  <a href="/member/book/details?id={{ item['book']['_id'] }}" class="btn btn-sm btn-info w-100 mb-1">View</a>
+  <form action="/member/check-in-reserved" method="POST" class="mb-1">
+    <input type="hidden" name="reserve_id" value="{{ item['_id'] }}">
+    <button type="submit" class="btn btn-sm btn-success w-100">Check-In</button>
+  </form>
+  <form action="/member/cancel-reservation" method="POST">
+    <input type="hidden" name="reserve_id" value="{{ item['_id'] }}">
+    <button type="submit" class="btn btn-sm btn-danger w-100">Cancel</button>
+  </form>
+</td>
+
+  </tr>
+  {% endfor %}
+</tbody>
+
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

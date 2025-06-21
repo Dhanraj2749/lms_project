@@ -1,0 +1,63 @@
+{% set title = "Dashboard" %}
+{% set curPage = "adminHome" %}
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+  <h5 class="page_title text-center border-bottom border-primary pb-2">{{title}}</h5>
+
+  <div class="card shadow">
+    <div class="card-body">
+      <div class="row text-center">
+
+        <!-- Total Books -->
+  <div class="col-md-4">
+    <a href="/admin/stocks" style="text-decoration: none;">
+      <div class="card bg-warning text-white mb-3 text-center" style="height: 150px;">
+        <div class="card-body">
+          <h5><i class="fa fa-book"></i></h5>
+          <h5>Total Books</h5>
+<h5 class="count" data-count="{{ dashboard.total_books }}">0</h5>      
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <!-- Total Members -->
+  <div class="col-md-4">
+    <a href="/admin/members" style="text-decoration: none;">
+      <div class="card bg-success text-white mb-3 text-center" style="height: 150px;">
+        <div class="card-body">
+          <h5><i class="fa-solid fa-users"></i></h5>
+          <h5>Total Members</h5>
+<h5 class="count" data-count="{{ dashboard.total_members }}">0</h5>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <!-- Active Transactions -->
+  <div class="col-md-4">
+    <a href="/admin/transactions" style="text-decoration: none;">
+      <div class="card bg-info text-white mb-3 text-center" style="height: 150px;">
+        <div class="card-body">
+          <h5><i class="fa-solid fa-book-open-reader"></i></h5>
+          <h5>Active Transactions</h5>
+<h5 class="count" data-count="{{ dashboard.active_transactions }}">0</h5>
+        </div>
+      </div>
+    </a>
+  </div>
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}
